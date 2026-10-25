@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, MessageBar, MessageBarBody } from "@fluentui/react-components";
 import { Lab_warehouseitemsService } from "@/generated/services/Lab_warehouseitemsService";
 import { ItemPicker } from "@/components/mobile/ItemPicker";
+import { ReceiveItemChooser } from "@/components/mobile/ReceiveItemChooser";
 import { ItemSummary } from "@/components/mobile/ItemSummary";
 import { MobilePage } from "@/components/mobile/MobilePage";
 import { QuantityStepper } from "@/components/mobile/QuantityStepper";
@@ -48,7 +49,7 @@ function QuickTransactionFlow({ mode }: { mode: Mode }) {
   if (!item) {
     return (
       <MobilePage title={config.title}>
-        <ItemPicker onSelect={setItem} />
+        {mode === "receive" ? <ReceiveItemChooser onSelect={setItem} /> : <ItemPicker onSelect={setItem} />}
       </MobilePage>
     );
   }
